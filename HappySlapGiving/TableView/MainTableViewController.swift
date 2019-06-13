@@ -127,11 +127,11 @@ cell.settingcell(newbet: bets[indexPath.row])
         let photo1 = UIImage(named: "sample1")
         let photo2 = UIImage(named: "defaultphoto")
         
-        guard let bet1 = Bet(username1: "FYQ", username2: "PRC", slaps: 100, winner: true, incident: "wo shi ni ba ba", photo: photo1) else {
+        guard let bet1 = Bet(username1: "FYQ", username2: "PRC", slaps: 20, winner: true, incident: "wo shi ni ba ba", photo: photo1) else {
             fatalError("Unable to instantiate bet")
         }
         
-        guard let bet2 = Bet(username1: "FYQ", username2: "PRC", slaps: 10, winner: true, incident: "qian zhai huan qian", photo: photo2) else {
+        guard let bet2 = Bet(username1: "FYQ", username2: "PRC", slaps: 12, winner: true, incident: "qian zhai huan qian", photo: photo2) else {
             fatalError("Unable to instantiate bet")
         }
         
