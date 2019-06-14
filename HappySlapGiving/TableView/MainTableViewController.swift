@@ -16,7 +16,7 @@ class MainTableViewController: UITableViewController {
     var finishedBets = [Bet]()
 
     //create different section
-    // var unfinishedbets = [Bet]()
+     var unfinishedBets = [Bet]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +25,8 @@ class MainTableViewController: UITableViewController {
         tableView.delegate = self
         
         addNewBetFromDatabase()
-
+        addNewUnfinishedBetFromDatabase()
+        
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -66,15 +67,24 @@ class MainTableViewController: UITableViewController {
         if section == 0{
         return finishedBets.count
         }
-        else {return 0}
+        else {
+            return unfinishedBets.count
+        }
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Bet", for: indexPath) as? BetTableViewCell else{
             fatalError("Can't load cell")
         }
-cell.settingcell(newbet: finishedBets[indexPath.row])
+    if (indexPath.section == 0){
+        cell.settingcell(newbet: finishedBets[indexPath.row])
+    }
+    else {
+        cell.settingcell(newbet: unfinishedBets[indexPath.row])
+        }
+        
         // Configure the cell...
 //     cell.username1.text = bets[indexPath.row].username1
 //     cell.username2.text = bets[indexPath.row].username2
@@ -168,8 +178,8 @@ cell.settingcell(newbet: finishedBets[indexPath.row])
     
     private func addNewBetFromDatabase(){
          var photo1 = UIImage(named: "user-logo")
-        
-         let postRef = Database.database().reference().child("users/testingpost")
+
+            let postRef = Database.database().reference().child("users/testingpost")
         
         postRef.observe(.value, with: { snapshot in
             
@@ -204,6 +214,48 @@ cell.settingcell(newbet: finishedBets[indexPath.row])
             
             self.finishedBets = tempBets
             self.loadSampleBets()
+            
+            self.tableView.reloadData()
+        })
+    }
+    
+    private func addNewUnfinishedBetFromDatabase(){
+        var photo1 = UIImage(named: "user-logo")
+        
+        let postRef = Database.database().reference().child("users/testingpost222")
+        
+        postRef.observe(.value, with: { snapshot in
+            
+            var tempBets = [Bet]()
+            
+            
+            for child in snapshot.children {
+                if let childSnapshot = child as? DataSnapshot,
+                    let dict = childSnapshot.value as? [String:Any],
+                    let BET = dict["BET"] as? [String:Any],
+                    let postby = dict["postby"]as? [String:Any],
+                    
+                    let username1 = BET["username1"] as? String,
+                    let username2 = BET["username2"] as? String,
+                    let uid = postby["currentUid"] as? String,
+                    let photoURL = postby["photoURL"] as? String,
+                    let url = URL(string:photoURL),
+                    let incident = BET["incident"] as? String,
+                    let timestamp = BET["timestamp"] as? Double {
+                    
+                    let userProfile = UserProfile(uid: uid, username: username1, photoURL: url)
+                    
+                    ImageService.downloadImage(withURL: userProfile.photoURL){
+                        image in photo1 = image
+                    }
+                    
+                    let post = Bet(username1: username1, username2: username2, slaps: 10, winner: true, incident: incident, photo: photo1)
+                    
+                    tempBets.append(post!)
+                }
+            }
+            
+            self.unfinishedBets = tempBets
             
             self.tableView.reloadData()
         })
