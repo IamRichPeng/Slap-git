@@ -17,11 +17,22 @@ class CreateBetController: UIViewController, UITextFieldDelegate, UITextViewDele
     @IBOutlet weak var incident: UITextView!
     
     @IBOutlet weak var placeHolderLabel: UILabel!
+    @IBOutlet weak var winnerlabel: UILabel!
     
     @IBOutlet weak var confirmbutton: UIButton!
 
-    
+    var done = false
    
+    @IBAction func isUnfinishedBet(_ sender: UIBarButtonItem) {
+        print("isUnfinishedBet")
+        done = false
+        winnerlabel.isHidden = true
+    }
+    @IBAction func isFinishedBet(_ sender: UIBarButtonItem) {
+        print("isFinishedBet")
+        done = true
+        winnerlabel.isHidden = false
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
