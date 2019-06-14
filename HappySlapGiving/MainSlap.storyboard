@@ -12,7 +12,7 @@
         <!--Home Slap Controller-->
         <scene sceneID="G0W-zP-aqz">
             <objects>
-                <viewController storyboardIdentifier="homeslap" id="9Tv-3D-8Um" customClass="HomeSlapController" customModule="FirebaseLogin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="homeslap" id="9Tv-3D-8Um" customClass="HomeSlapController" customModule="HappySlapGiving" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gAi-md-ISY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -102,13 +102,13 @@
         <!--SLAP-->
         <scene sceneID="pNL-4g-5Qt">
             <objects>
-                <tableViewController id="KY6-cm-n5F" customClass="MainTableViewController" customModule="FirebaseLogin" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="KY6-cm-n5F" customClass="MainTableViewController" customModule="HappySlapGiving" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="MR7-qn-1fG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Bet" rowHeight="90" id="L7N-nA-Tb4" customClass="BetTableViewCell" customModule="FirebaseLogin" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Bet" rowHeight="90" id="L7N-nA-Tb4" customClass="BetTableViewCell" customModule="HappySlapGiving" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="L7N-nA-Tb4" id="sQq-zx-yBc">
@@ -202,7 +202,7 @@
         <!--Bet Details Controller-->
         <scene sceneID="NQ7-6W-Q02">
             <objects>
-                <viewController id="3i9-im-300" customClass="BetDetailsController" customModule="FirebaseLogin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="3i9-im-300" customClass="BetDetailsController" customModule="HappySlapGiving" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lR1-hn-IXv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -252,6 +252,7 @@
                     </view>
                     <connections>
                         <outlet property="incident" destination="CF7-Kf-44h" id="0Vv-AH-nr1"/>
+                        <outlet property="photo" destination="hVs-Ht-gOj" id="mNz-Kw-Hcl"/>
                         <outlet property="username1" destination="1Bn-6n-6Wh" id="S3Y-aA-57V"/>
                         <outlet property="username2" destination="dU9-K5-VEu" id="tpZ-8x-bCa"/>
                     </connections>
@@ -263,7 +264,7 @@
         <!--Create Bet Controller-->
         <scene sceneID="lJP-h8-PCP">
             <objects>
-                <viewController id="IW4-Yo-7y3" customClass="CreateBetController" customModule="FirebaseLogin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="IW4-Yo-7y3" customClass="CreateBetController" customModule="HappySlapGiving" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5GU-f6-IDJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
