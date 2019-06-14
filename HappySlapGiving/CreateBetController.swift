@@ -22,7 +22,7 @@ class CreateBetController: UIViewController, UITextFieldDelegate, UITextViewDele
     @IBOutlet weak var confirmbutton: UIButton!
 
     var done = false
-   
+    
     @IBAction func isUnfinishedBet(_ sender: UIBarButtonItem) {
         print("isUnfinishedBet")
         done = false
@@ -40,6 +40,8 @@ class CreateBetController: UIViewController, UITextFieldDelegate, UITextViewDele
         username2.delegate = self
         
         incident.delegate = self
+        
+        winnerlabel.isHidden = true
         
         setConfirmButton(enabled: false)
         
@@ -94,7 +96,13 @@ class CreateBetController: UIViewController, UITextFieldDelegate, UITextViewDele
         
         guard let userProfile = UserService.currentUserProfile else {return }
         
-        let postRef = Database.database().reference().child("users/testingpost").childByAutoId()
+        var postRef = Database.database().reference().child("users/testingpost222").childByAutoId()
+        if (done == true){
+             postRef = Database.database().reference().child("users/testingpost").childByAutoId()
+        }
+        else{
+              postRef = Database.database().reference().child("users/testingpost222").childByAutoId()
+        }
         
         let postObject = [
             "postby": [
