@@ -13,8 +13,10 @@ import Firebase
 class MainTableViewController: UITableViewController {
     
     //Mark: Properties
-    var bets = [Bet]()
+    var finishedBets = [Bet]()
 
+    //create different section
+    // var unfinishedbets = [Bet]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,15 +35,38 @@ class MainTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        switch section {
+        case 0:
+            let label = UILabel()
+            label.text = "Finished Bet"
+            label.backgroundColor = UIColor.yellow
+            return label
+        case 1:
+            let label = UILabel()
+            label.text = "WE WILL SEE!"
+            label.backgroundColor = UIColor.red
+            return label
+            
+        default:
+            let label = UILabel()
+            return label
+        }
+    }
+    
+
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return bets.count
+        if section == 0{
+        return finishedBets.count
+        }
+        else {return 0}
     }
 
     
@@ -49,7 +74,7 @@ class MainTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Bet", for: indexPath) as? BetTableViewCell else{
             fatalError("Can't load cell")
         }
-cell.settingcell(newbet: bets[indexPath.row])
+cell.settingcell(newbet: finishedBets[indexPath.row])
         // Configure the cell...
 //     cell.username1.text = bets[indexPath.row].username1
 //     cell.username2.text = bets[indexPath.row].username2
@@ -109,7 +134,7 @@ cell.settingcell(newbet: bets[indexPath.row])
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      if let destination = segue.destination as? BetDetailsController,
      let indexPath = tableView.indexPathForSelectedRow{
-     destination.bet = bets[indexPath.row]
+     destination.bet = finishedBets[indexPath.row]
      }
      }
      
@@ -135,8 +160,8 @@ cell.settingcell(newbet: bets[indexPath.row])
             fatalError("Unable to instantiate bet")
         }
         
-        bets.append(bet1)
-        bets.append(bet2)
+        finishedBets.append(bet1)
+        finishedBets.append(bet2)
     }
     
     //**************read data from firebase**********************
@@ -177,7 +202,7 @@ cell.settingcell(newbet: bets[indexPath.row])
                 }
         }
             
-            self.bets = tempBets
+            self.finishedBets = tempBets
             self.loadSampleBets()
             
             self.tableView.reloadData()
