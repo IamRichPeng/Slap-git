@@ -144,9 +144,14 @@ class MainTableViewController: UITableViewController {
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      if let destination = segue.destination as? BetDetailsController,
      let indexPath = tableView.indexPathForSelectedRow{
+        if indexPath.section == 0{
      destination.bet = finishedBets[indexPath.row]
      }
+        else{
+            destination.bet = unfinishedBets[indexPath.row]
+        }
      }
+    }
      
      
     
