@@ -95,13 +95,14 @@ class CreateBetController: UIViewController, UITextFieldDelegate, UITextViewDele
     @IBAction func confirm(_ sender: Any) {
         
         guard let userProfile = UserService.currentUserProfile else {return }
+           guard let uid = Auth.auth().currentUser?.uid else { return }
         
-        var postRef = Database.database().reference().child("users/testingpost222").childByAutoId()
+        var postRef = Database.database().reference().child("users/\(uid)/testingpost222").childByAutoId()
         if (done == true){
-             postRef = Database.database().reference().child("users/testingpost").childByAutoId()
+             postRef = Database.database().reference().child("users/\(uid)/testingpost").childByAutoId()
         }
         else{
-              postRef = Database.database().reference().child("users/testingpost222").childByAutoId()
+              postRef = Database.database().reference().child("users/\(uid)/testingpost222").childByAutoId()
         }
         
         let postObject = [

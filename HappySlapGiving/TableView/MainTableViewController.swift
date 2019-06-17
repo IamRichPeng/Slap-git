@@ -178,8 +178,9 @@ class MainTableViewController: UITableViewController {
     
     private func addNewBetFromDatabase(){
          var photo1 = UIImage(named: "user-logo")
-
-            let postRef = Database.database().reference().child("users/testingpost")
+        
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let postRef = Database.database().reference().child("users/\(uid)/testingpost")
         
         postRef.observe(.value, with: { snapshot in
             
@@ -222,7 +223,8 @@ class MainTableViewController: UITableViewController {
     private func addNewUnfinishedBetFromDatabase(){
         var photo1 = UIImage(named: "user-logo")
         
-        let postRef = Database.database().reference().child("users/testingpost222")
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let postRef = Database.database().reference().child("users/\(uid)/testingpost222")
         
         postRef.observe(.value, with: { snapshot in
             
