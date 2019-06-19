@@ -191,7 +191,6 @@ class MainTableViewController: UITableViewController {
             
             var tempBets = [Bet]()
          
-            
             for child in snapshot.children {
                 if let childSnapshot = child as? DataSnapshot,
                     let dict = childSnapshot.value as? [String:Any],
