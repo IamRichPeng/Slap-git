@@ -97,6 +97,15 @@ class CreateBetController: UIViewController, UITextFieldDelegate, UITextViewDele
         guard let userProfile = UserService.currentUserProfile else {return }
            guard let uid = Auth.auth().currentUser?.uid else { return }
         
+        // try to upload to other uid2!
+        var uid2:String
+        
+        let ref = Database.database().reference()
+        ref.child("users").queryOrdered(byChild: "username").queryEqual(toValue: self.username2.text).observeSingleEvent(of: .value, with: { (snap) in
+            print (String(describing: snap.value));
+        })
+        
+        
         var postRef = Database.database().reference().child("users/\(uid)/testingpost222").childByAutoId()
         if (done == true){
              postRef = Database.database().reference().child("users/\(uid)/testingpost").childByAutoId()
