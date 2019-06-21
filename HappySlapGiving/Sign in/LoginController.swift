@@ -206,7 +206,7 @@ extension LoginController: GIDSignInDelegate {
             guard let email = result?.user.email else { return }
             guard let username = result?.user.displayName else { return }
             
-            let values = ["email": email, "username": username]
+            let values = ["email": email, "username": username,"uid": uid]
             
             Database.database().reference().child("users").child(uid).updateChildValues(values, withCompletionBlock: { (error, ref) in
                 guard let navController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else { return }

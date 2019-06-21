@@ -18,7 +18,7 @@ class SignUpController: UIViewController ,GIDSignInUIDelegate{
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
-        iv.image = #imageLiteral(resourceName: "firebase-logo")
+        iv.image = #imageLiteral(resourceName: "happyslap")
         return iv
     }()
     
@@ -150,7 +150,8 @@ class SignUpController: UIViewController ,GIDSignInUIDelegate{
             guard let uid = authResult?.user.uid else { return }
             
             let values = ["email": email,
-                          "username": username] 
+                          "username": username,
+                          "uid": uid]
             
             USERS_REF.child(uid).updateChildValues(values, withCompletionBlock: { (err, ref) in
                 if let err = err {
