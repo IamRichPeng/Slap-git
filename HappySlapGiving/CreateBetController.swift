@@ -97,26 +97,59 @@ class CreateBetController: UIViewController, UITextFieldDelegate, UITextViewDele
         guard let userProfile = UserService.currentUserProfile else {return }
            guard let uid = Auth.auth().currentUser?.uid else { return }
         
-        // ***********try to upload to other uid2!********
-        var uid2:String?
+        // ***********try to upload to other uid2!(fetching uid) ********
+        
+        var uid2: String?
+        var postRef2: DatabaseReference?
         
         let ref = Database.database().reference()
         ref.child("users").queryOrdered(byChild: "username").queryEqual(toValue: "Nibaba").observeSingleEvent(of: .value, with: { (snapshot) in
             
  //           print(snapshot)
-
             for snap in snapshot.children.allObjects as! [DataSnapshot]{
-               print(snap)
+              print(snap)
                 guard let dictionary = snap.value as? [String : AnyObject] else {return}
                 uid2 = dictionary["uid"] as? String
-                print(uid2)
+                print(uid2!)
+                
+            postRef2 = Database.database().reference().child("users/\(uid2!)/testingpost222").childByAutoId()
+                if (self.done == true){
+                    postRef2 = Database.database().reference().child("users/\(uid2!)/testingpost").childByAutoId()
+                }
+                else{
+                    postRef2 = Database.database().reference().child("users/\(uid2!)/testingpost222").childByAutoId()
+                }
+                
+                let postObject = [
+                    "postby": [
+                        "currentUid" : userProfile.uid,
+                        "photoURL" : userProfile.photoURL.absoluteString,
+                        "username" : userProfile.username],
+                    
+                    "BET":[
+                        "username1": self.username1.text!,
+                        "username2": self.username2.text!,
+                        "incident": self.incident.text,
+                        "timestamp": [".sv":"timestamp"]
+                    ]
+                    
+                    ] as [String:Any]
+                
+                postRef2!.setValue(postObject, withCompletionBlock: { error, ref in
+                    if error == nil {
+                        self.dismiss(animated: true, completion: nil)
+                    } else {
+                        // Handle the error
+                    }
+                })
+                
             }
-
-
-        })
-   
+        }, withCancel: nil)
         
-        
+
+        //******************************************************
+//        var  postRef2 = Database.database().reference().child("users/\(uid2)/testingpost222").childByAutoId()
+
         var postRef = Database.database().reference().child("users/\(uid)/testingpost222").childByAutoId()
         if (done == true){
              postRef = Database.database().reference().child("users/\(uid)/testingpost").childByAutoId()
@@ -148,6 +181,7 @@ class CreateBetController: UIViewController, UITextFieldDelegate, UITextViewDele
                 // Handle the error
             }
         })
+        
         
 navigationController?.popToRootViewController(animated: true)
 
