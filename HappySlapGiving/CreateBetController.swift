@@ -23,6 +23,12 @@ class CreateBetController: UIViewController, UITextFieldDelegate, UITextViewDele
 
     var done = false
     
+    // use to check if there is username2
+    var valid = false
+    
+    // use to send another uid except currentuser's 
+     var uid2: String?
+    
     @IBAction func isUnfinishedBet(_ sender: UIBarButtonItem) {
         print("isUnfinishedBet")
         done = false
@@ -94,98 +100,106 @@ class CreateBetController: UIViewController, UITextFieldDelegate, UITextViewDele
     
     @IBAction func confirm(_ sender: Any) {
         
-        guard let userProfile = UserService.currentUserProfile else {return }
-           guard let uid = Auth.auth().currentUser?.uid else { return }
         
         // ***********try to upload to other uid2!(fetching uid) ********
+        //using "completion" to execute retriveUser2 func first
         
-        var uid2: String?
-        var postRef2: DatabaseReference?
+        retriveUser2{
+            self.addtoUsers()
+        }
+    }
+    
+    
+    func retriveUser2(_ completion: (() -> Void)? ){
         
         let ref = Database.database().reference()
-        ref.child("users").queryOrdered(byChild: "username").queryEqual(toValue: "Nibaba").observeSingleEvent(of: .value, with: { (snapshot) in
+        ref.child("users").queryOrdered(byChild: "username").queryEqual(toValue: self.username2.text).observeSingleEvent(of: .value, with: { (snapshot) in
             
- //           print(snapshot)
+            //           print(snapshot)
+            self.valid = snapshot.exists()
+            print(self.valid)
+            
             for snap in snapshot.children.allObjects as! [DataSnapshot]{
-              print(snap)
+                //            print(snap)
                 guard let dictionary = snap.value as? [String : AnyObject] else {return}
-                uid2 = dictionary["uid"] as? String
-                print(uid2!)
-                
-            postRef2 = Database.database().reference().child("users/\(uid2!)/testingpost222").childByAutoId()
-                if (self.done == true){
-                    postRef2 = Database.database().reference().child("users/\(uid2!)/testingpost").childByAutoId()
-                }
-                else{
-                    postRef2 = Database.database().reference().child("users/\(uid2!)/testingpost222").childByAutoId()
-                }
-                
-                let postObject = [
-                    "postby": [
-                        "currentUid" : userProfile.uid,
-                        "photoURL" : userProfile.photoURL.absoluteString,
-                        "username" : userProfile.username],
-                    
-                    "BET":[
-                        "username1": self.username1.text!,
-                        "username2": self.username2.text!,
-                        "incident": self.incident.text,
-                        "timestamp": [".sv":"timestamp"]
-                    ]
-                    
-                    ] as [String:Any]
-                
-                postRef2!.setValue(postObject, withCompletionBlock: { error, ref in
-                    if error == nil {
-                        self.dismiss(animated: true, completion: nil)
-                    } else {
-                        // Handle the error
-                    }
-                })
+                self.uid2 = dictionary["uid"] as? String
+                print(self.uid2!)
                 
             }
+            // call the closure function upon completion
+            completion?()
         }, withCancel: nil)
-        
-
-        //******************************************************
-//        var  postRef2 = Database.database().reference().child("users/\(uid2)/testingpost222").childByAutoId()
-
-        var postRef = Database.database().reference().child("users/\(uid)/testingpost222").childByAutoId()
-        if (done == true){
-             postRef = Database.database().reference().child("users/\(uid)/testingpost").childByAutoId()
-        }
-        else{
-              postRef = Database.database().reference().child("users/\(uid)/testingpost222").childByAutoId()
-        }
-        
-        let postObject = [
-            "postby": [
-            "currentUid" : userProfile.uid,
-            "photoURL" : userProfile.photoURL.absoluteString,
-            "username" : userProfile.username],
-            
-            "BET":[
-            "username1": username1.text!,
-            "username2": username2.text!,
-            "incident": incident.text,
-            "timestamp": [".sv":"timestamp"]
-    ]
-            
-        ] as [String:Any]
-        
-        
-        postRef.setValue(postObject, withCompletionBlock: { error, ref in
-            if error == nil {
-                self.dismiss(animated: true, completion: nil)
-            } else {
-                // Handle the error
-            }
-        })
-        
-        
-navigationController?.popToRootViewController(animated: true)
-
     }
+    
+    
+    func addtoUsers(){
+        
+        guard let userProfile = UserService.currentUserProfile else {return }
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        
+        if valid == true{
+            var postRef = Database.database().reference().child("users/\(uid)/testingpost222").childByAutoId()
+            var  postRef2 = Database.database().reference().child("users/\(uid2!)/testingpost222").childByAutoId()
+            
+            if (done == true){
+                postRef = Database.database().reference().child("users/\(uid)/testingpost").childByAutoId()
+                 postRef2 = Database.database().reference().child("users/\(uid2!)/testingpost").childByAutoId()
+            }
+            else{
+                postRef = Database.database().reference().child("users/\(uid)/testingpost222").childByAutoId()
+                  postRef2 = Database.database().reference().child("users/\(uid2!)/testingpost222").childByAutoId()
+            }
+            
+            let postObject = [
+                "postby": [
+                    "currentUid" : userProfile.uid,
+                    "photoURL" : userProfile.photoURL.absoluteString,
+                    "username" : userProfile.username],
+                
+                "BET":[
+                    "username1": username1.text!,
+                    "username2": username2.text!,
+                    "incident": incident.text,
+                    "timestamp": [".sv":"timestamp"]
+                ]
+                
+                ] as [String:Any]
+            
+            
+            postRef.setValue(postObject, withCompletionBlock: { error, ref in
+                if error == nil {
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    // Handle the error
+                }
+            })
+            
+            postRef2.setValue(postObject, withCompletionBlock: { error, ref in
+                if error == nil {
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    // Handle the error
+                }
+            })
+
+            navigationController?.popToRootViewController(animated: true)
+            
+        }
+           
+            // Alert!!!!! if there is no user name username2.text
+        else{
+            guard let nmsl  = self.username2.text  else{return}
+            let alert = UIAlertController(title: "Warning", message: "There is no such a user called \" \(nmsl) \"", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Back", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+            
+        }
+        
+    }
+    
+    
+    
     
     override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
         incident.resignFirstResponder()
