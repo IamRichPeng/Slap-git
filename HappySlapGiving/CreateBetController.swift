@@ -161,6 +161,7 @@ class CreateBetController: UIViewController, UITextFieldDelegate, UITextViewDele
                     "username1": username1.text!,
                     "username2": username2.text!,
                     "incident": incident.text,
+                    
                     "timestamp": [".sv":"timestamp"]
                 ]
                 

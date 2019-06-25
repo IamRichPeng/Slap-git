@@ -184,15 +184,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="SLAP" id="PVU-Gq-ffo">
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="bZI-S4-XvH">
-                                <connections>
-                                    <action selector="AddNewBet:" destination="KY6-cm-n5F" id="cMv-2v-Gw7"/>
-                                    <segue destination="IW4-Yo-7y3" kind="show" identifier="addBet" id="TCT-Bj-tgl"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="edit" id="n4k-Ab-0vm"/>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="bZI-S4-XvH">
+                            <connections>
+                                <action selector="AddNewBet:" destination="KY6-cm-n5F" id="cMv-2v-Gw7"/>
+                                <segue destination="IW4-Yo-7y3" kind="show" identifier="addBet" id="TCT-Bj-tgl"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K32-Nr-cvb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -253,8 +250,10 @@
                     <connections>
                         <outlet property="incident" destination="CF7-Kf-44h" id="0Vv-AH-nr1"/>
                         <outlet property="photo" destination="hVs-Ht-gOj" id="mNz-Kw-Hcl"/>
+                        <outlet property="slaps" destination="z1k-qN-J0R" id="awr-u9-MyO"/>
                         <outlet property="username1" destination="1Bn-6n-6Wh" id="S3Y-aA-57V"/>
                         <outlet property="username2" destination="dU9-K5-VEu" id="tpZ-8x-bCa"/>
+                        <outlet property="winner" destination="rYh-TK-NQP" id="xCZ-bH-Gs3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F2k-pX-qir" userLabel="First Responder" sceneMemberID="firstResponder"/>
