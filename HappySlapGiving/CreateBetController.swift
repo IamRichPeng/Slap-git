@@ -101,16 +101,17 @@ class CreateBetController: UIViewController, UITextFieldDelegate, UITextViewDele
     @IBAction func confirm(_ sender: Any) {
         
         
-        // ***********try to upload to other uid2!(fetching uid) ********
+        // ***********try to upload to two users(fetching uid2) ********
         //using "completion" to execute retriveUser2 func first
         
-        retriveUser2{
+        retriveUser2 { (userid) in
             self.addtoUsers()
         }
+        
     }
     
     
-    func retriveUser2(_ completion: (() -> Void)? ){
+    func retriveUser2(completion:@escaping (_ userid: String)->() ){
         
         let ref = Database.database().reference()
         ref.child("users").queryOrdered(byChild: "username").queryEqual(toValue: self.username2.text).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -124,12 +125,25 @@ class CreateBetController: UIViewController, UITextFieldDelegate, UITextViewDele
                 guard let dictionary = snap.value as? [String : AnyObject] else {return}
                 self.uid2 = dictionary["uid"] as? String
                 print(self.uid2!)
+            }
+            
+            // call the closure function upon completion
+            if self.valid{
+            completion(self.uid2!)
+            }
+         
+        // Alert!!!!! if there is no user name username2.text
+            else{
+                guard let nmsl  = self.username2.text  else{return}
+                let alert = UIAlertController(title: "Warning", message: "There is no such a user called \" \(nmsl) \"", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Back", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
                 
             }
-            // call the closure function upon completion
-            completion?()
+            
         }, withCancel: nil)
     }
+    
     
     
     func addtoUsers(){
@@ -138,7 +152,6 @@ class CreateBetController: UIViewController, UITextFieldDelegate, UITextViewDele
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
         
-        if valid == true{
             var postRef = Database.database().reference().child("users/\(uid)/testingpost222").childByAutoId()
             var  postRef2 = Database.database().reference().child("users/\(uid2!)/testingpost222").childByAutoId()
             
@@ -185,17 +198,6 @@ class CreateBetController: UIViewController, UITextFieldDelegate, UITextViewDele
             })
 
             navigationController?.popToRootViewController(animated: true)
-            
-        }
-           
-            // Alert!!!!! if there is no user name username2.text
-        else{
-            guard let nmsl  = self.username2.text  else{return}
-            let alert = UIAlertController(title: "Warning", message: "There is no such a user called \" \(nmsl) \"", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Back", style: .cancel, handler: nil))
-        self.present(alert, animated: true)
-            
-        }
         
     }
     
