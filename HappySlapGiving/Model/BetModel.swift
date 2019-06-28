@@ -13,8 +13,8 @@ class Bet {
     
     var username1: String
     var username2: String
-    var slaps: Int
-    var winner: Bool // 0 for winner = username1(myself)
+    var slaps: Int //加一个slap变量，加深对整个流程的理解。
+    var winner: Bool // 0 for winner = username1(myself), or change to string? TBD
     var incident: String
      var photo: UIImage?
     
