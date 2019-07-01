@@ -18,15 +18,18 @@ class MainTableViewController: UITableViewController {
     //create different section
      var unfinishedBets = [Bet]()
     
+    var valid = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.dataSource = self
         tableView.delegate = self
         
+        loadcache()
+        
         addNewBetFromDatabase()
         addNewUnfinishedBetFromDatabase()
-        
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -179,6 +182,70 @@ class MainTableViewController: UITableViewController {
         finishedBets.append(bet2)
     }
     
+    
+    
+    //************************ loading cache, sending out alert*************************
+    
+    private func loadcache(){
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        let cacheRef = Database.database().reference().child("cache/\(uid)")
+        cacheRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+           self.valid = snapshot.exists()
+            
+            let BET = snapshot.childSnapshot(forPath: "BET")
+             let dict1 = BET.value as? NSDictionary
+            let incident = dict1?["incident"] as? String ?? "nil"
+            let timestamp = dict1?["timestamp"] as? Double ?? 0
+            let username1 = dict1?["username1"] as? String ?? "nil"
+            let username2 = dict1?["username2"] as? String ?? "nil"
+            
+            let Postby = snapshot.childSnapshot(forPath: "postby")
+            let dict2 = Postby.value as? NSDictionary
+            let currentUid = dict2?["currentUid"] as? String ?? "nil"
+            let photoURL = dict2?["photoURL"] as? String ?? "nil"
+            let username = dict2?["username"] as? String ?? "nil"
+            
+            print("\(incident) 1 \(timestamp)2 \(username1)3 \(username2) \(currentUid) 4 \(photoURL) 5 \(username)")
+            
+            if self.valid{
+                print("lets do alert")
+            
+                let alert = UIAlertController(title: "New Bet", message: "\(username1) wanna bet you \(username2) for \(incident)", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "NO WAY", style: .default, handler: {
+                    action in
+                    print("delete")
+                    cacheRef.removeValue()
+                }))
+                
+                alert.addAction(UIAlertAction(title: "YEAH", style: .default, handler: {
+                    action in
+                    self.addtoUsers(incident: incident, timestamp: timestamp, username1: username1, username2: username2, currentUid: currentUid, photoURL: photoURL, username: username)
+                    cacheRef.removeValue()
+                }))
+                self.present(alert, animated: true)
+                
+                
+            }
+                
+            else{
+                print("there is no new bet")
+                return
+            }
+
+            
+        }){
+            (error) in
+            print("Error!!!!!!!!!!!!!!!")
+            return
+        }
+        
+        
+    }
+    
+    
+    
     //**************read data from firebase**********************
     
     private func addNewBetFromDatabase(){
@@ -266,4 +333,47 @@ class MainTableViewController: UITableViewController {
             self.tableView.reloadData()
         })
     }
+    
+    
+    
+    private func addtoUsers(incident: String, timestamp: Double, username1: String, username2: String, currentUid: String, photoURL: String, username: String){
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let postRef = Database.database().reference().child("users/\(uid)/testingpost222").childByAutoId()
+        let  postRef2 = Database.database().reference().child("users/\(currentUid)/testingpost222").childByAutoId()
+        
+        let postObject = [
+            "postby": [
+                "currentUid" : currentUid,
+                "photoURL" : photoURL,
+                "username" : username],
+            
+            "BET":[
+                "username1": username1,
+                "username2": username2,
+                "incident": incident,
+                "timestamp": timestamp
+            ]
+            ] as [String:Any]
+        
+        postRef.setValue(postObject, withCompletionBlock: { error, ref in
+            if error == nil {
+                self.dismiss(animated: true, completion: nil)
+            } else {
+                // Handle the error
+            }
+        })
+        
+        postRef2.setValue(postObject, withCompletionBlock: { error, ref in
+            if error == nil {
+                self.dismiss(animated: true, completion: nil)
+            } else {
+                // Handle the error
+            }
+        })
+        
+        print("sucessful adding")
+    }
+        
+   
+    
 }

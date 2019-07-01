@@ -105,7 +105,7 @@ class CreateBetController: UIViewController, UITextFieldDelegate, UITextViewDele
         //using "completion" to execute retriveUser2 func first
         
         retriveUser2 { (userid) in
-            self.addtoUsers()
+           self.addtoCache()
         }
         
     }
@@ -142,6 +142,40 @@ class CreateBetController: UIViewController, UITextFieldDelegate, UITextViewDele
             }
             
         }, withCancel: nil)
+    }
+    
+    
+    func addtoCache(){
+        guard let userProfile = UserService.currentUserProfile else {return }
+        
+        let postCache = Database.database().reference().child("cache/\(uid2!)")
+        
+        let postObject = [
+            
+            
+            "postby": [
+                "currentUid" : userProfile.uid,
+                "photoURL" : userProfile.photoURL.absoluteString,
+                "username" : userProfile.username],
+            
+            "BET":[
+                "username1": username1.text!,
+                "username2": username2.text!,
+                "incident": incident.text,
+                
+                "timestamp": [".sv":"timestamp"]
+            ]
+            
+            ] as [String:Any]
+        
+        postCache.setValue(postObject, withCompletionBlock: { error, ref in
+            if error == nil {
+                self.dismiss(animated: true, completion: nil)
+            }
+        })
+        
+        navigationController?.popToRootViewController(animated: true)
+        
     }
     
     
