@@ -13,6 +13,11 @@ class BetDetailsController: UIViewController{
     @IBOutlet weak var username1: UILabel!
     @IBOutlet weak var username2: UILabel!
     @IBOutlet weak var incident: UILabel!
+    
+    @IBOutlet weak var slaps: UILabel!
+    
+    @IBOutlet weak var winner: UILabel!
+    
     @IBOutlet weak var photo: UIImageView!
     
     // This value ispassed by `MainTableViewController` in `prepare(for:sender:)`
@@ -26,6 +31,12 @@ class BetDetailsController: UIViewController{
             username2.text = bet.username2
             incident.text = bet.incident
             photo.image = bet.photo
+            if bet.winner{
+                winner.text = bet.username1
+            }
+            else{
+                winner.text = bet.username2
+            }
         }
 
     }
