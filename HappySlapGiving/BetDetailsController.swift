@@ -20,6 +20,8 @@ class BetDetailsController: UIViewController{
     
     @IBOutlet weak var photo: UIImageView!
     
+    @IBAction func SlapLoser(_ sender: Any) {
+    }
     // This value ispassed by `MainTableViewController` in `prepare(for:sender:)`
     var bet: Bet?
     

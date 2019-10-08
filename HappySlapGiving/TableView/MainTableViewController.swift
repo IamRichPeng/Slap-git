@@ -374,6 +374,10 @@ class MainTableViewController: UITableViewController {
         print("sucessful adding")
     }
         
-   
+    @IBAction func back(_ sender: Any) {
+        let navController = UINavigationController(rootViewController: HomeController())
+        self.present(navController, animated: true, completion: nil)
+    }
+    
     
 }
