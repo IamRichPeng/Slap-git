@@ -32,6 +32,7 @@ class BetDetailsController: UIViewController{
             username1.text = bet.username1
             username2.text = bet.username2
             incident.text = bet.incident
+            slaps.text = String(bet.slaps)
             photo.image = bet.photo
             winner.text = bet.winner
         }

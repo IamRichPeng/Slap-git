@@ -200,6 +200,7 @@ class MainTableViewController: UITableViewController {
             let timestamp = dict1?["timestamp"] as? Double ?? 0
             let username1 = dict1?["username1"] as? String ?? "nil"
             let username2 = dict1?["username2"] as? String ?? "nil"
+            let slaps = dict1?["slaps"] as? Int ?? 0
             let winner = dict1?["winner"] as? String ?? "nil"
             
             let Postby = snapshot.childSnapshot(forPath: "postby")
@@ -213,7 +214,7 @@ class MainTableViewController: UITableViewController {
             if self.valid{
                 print("lets do alert")
             
-                let alert = UIAlertController(title: "New Bet", message: "\(username1) wanna bet you \(username2) for \(incident)", preferredStyle: .alert)
+                let alert = UIAlertController(title: "New Bet", message: "\(username1) wanna bet you \(username2) for \(incident) for \(slaps) slaps", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "NO WAY", style: .default, handler: {
                     action in
                     print("delete")
@@ -223,11 +224,11 @@ class MainTableViewController: UITableViewController {
                 alert.addAction(UIAlertAction(title: "YEAH", style: .default, handler: {
                     action in
                     if winner == "nil"{
-                    self.addtoUsers222(incident: incident, timestamp: timestamp, username1: username1, username2: username2, currentUid: currentUid, photoURL: photoURL, username: username,winner: winner)
+                    self.addtoUsers222(incident: incident, timestamp: timestamp, username1: username1, username2: username2, currentUid: currentUid, photoURL: photoURL, username: username,winner: winner, slaps: slaps)
                     cacheRef.removeValue()
                     }
                     else{
-                        self.addtoUsers(incident: incident, timestamp: timestamp, username1: username1, username2: username2, currentUid: currentUid, photoURL: photoURL, username: username,winner: winner)
+                        self.addtoUsers(incident: incident, timestamp: timestamp, username1: username1, username2: username2, currentUid: currentUid, photoURL: photoURL, username: username,winner: winner, slaps: slaps)
                         cacheRef.removeValue()
                     }
                 }))
@@ -274,6 +275,7 @@ class MainTableViewController: UITableViewController {
                     let username1 = BET["username1"] as? String,
                     let username2 = BET["username2"] as? String,
                     let winner = BET["winner"] as? String,
+                    let slaps = BET["slaps"] as? Int,
                     let uid = postby["currentUid"] as? String,
                     let photoURL = postby["photoURL"] as? String,
                     let url = URL(string:photoURL),
@@ -286,7 +288,7 @@ class MainTableViewController: UITableViewController {
                         image in photo1 = image
                     }
 
-                   let post = Bet(username1: username1, username2: username2, slaps: 10, winner: winner , incident: incident, photo: photo1)
+                   let post = Bet(username1: username1, username2: username2, slaps: slaps, winner: winner , incident: incident, photo: photo1)
                     
                     tempBets.append(post!)
                 }
@@ -319,6 +321,8 @@ class MainTableViewController: UITableViewController {
                     let username1 = BET["username1"] as? String,
                     let username2 = BET["username2"] as? String,
                     let winner = BET["winner"] as? String,
+                    let slaps = BET["slaps"] as? Int,
+                    
                     let uid = postby["currentUid"] as? String,
                     let photoURL = postby["photoURL"] as? String,
                     let url = URL(string:photoURL),
@@ -331,7 +335,7 @@ class MainTableViewController: UITableViewController {
                         image in photo1 = image
                     }
                     
-                    let post = Bet(username1: username1, username2: username2, slaps: 10, winner: winner, incident: incident, photo: photo1)
+                    let post = Bet(username1: username1, username2: username2, slaps: slaps, winner: winner, incident: incident, photo: photo1)
                     
                     tempBets.append(post!)
                 }
@@ -345,7 +349,7 @@ class MainTableViewController: UITableViewController {
     
     
     
-    private func addtoUsers222(incident: String, timestamp: Double, username1: String, username2: String, currentUid: String, photoURL: String, username: String, winner: String){
+    private func addtoUsers222(incident: String, timestamp: Double, username1: String, username2: String, currentUid: String, photoURL: String, username: String, winner: String,slaps: Int){
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
         let postRef = Database.database().reference().child("users/\(uid)/testingpost222").childByAutoId()
@@ -362,6 +366,7 @@ class MainTableViewController: UITableViewController {
                 "username2": username2,
                 "incident": incident,
                 "winner": winner,
+                "slaps": slaps,
                 "timestamp": timestamp
             ]
             ] as [String:Any]
@@ -387,7 +392,7 @@ class MainTableViewController: UITableViewController {
     
     
     
-    private func addtoUsers(incident: String, timestamp: Double, username1: String, username2: String, currentUid: String, photoURL: String, username: String, winner: String){
+    private func addtoUsers(incident: String, timestamp: Double, username1: String, username2: String, currentUid: String, photoURL: String, username: String, winner: String, slaps: Int){
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
         let postRef = Database.database().reference().child("users/\(uid)/testingpost").childByAutoId()
@@ -403,6 +408,7 @@ class MainTableViewController: UITableViewController {
                 "username1": username1,
                 "username2": username2,
                 "incident": incident,
+                "slaps": slaps,
                 "winner": winner,
                 "timestamp": timestamp
             ]
