@@ -33,12 +33,7 @@ class BetDetailsController: UIViewController{
             username2.text = bet.username2
             incident.text = bet.incident
             photo.image = bet.photo
-            if bet.winner{
-                winner.text = bet.username1
-            }
-            else{
-                winner.text = bet.username2
-            }
+            winner.text = bet.winner
         }
 
     }

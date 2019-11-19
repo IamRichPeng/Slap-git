@@ -36,6 +36,7 @@ class CreateBetController: UIViewController, UITextFieldDelegate, UITextViewDele
         done = false
         winnerlabel.isHidden = true
         winner.isHidden = true
+        winner.text = "nil"
     }
     @IBAction func isFinishedBet(_ sender: UIBarButtonItem) {
         print("isFinishedBet")

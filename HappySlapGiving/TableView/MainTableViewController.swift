@@ -170,11 +170,11 @@ class MainTableViewController: UITableViewController {
         let photo1 = UIImage(named: "sample1")
         let photo2 = UIImage(named: "defaultphoto")
         
-        guard let bet1 = Bet(username1: "FYQ", username2: "PRC", slaps: 20, winner: true, incident: "wo shi ni ba ba", photo: photo1) else {
+        guard let bet1 = Bet(username1: "FYQ", username2: "PRC", slaps: 20, winner: "PRC", incident: "wo shi ni ba ba", photo: photo1) else {
             fatalError("Unable to instantiate bet")
         }
         
-        guard let bet2 = Bet(username1: "FYQ", username2: "PRC", slaps: 12, winner: true, incident: "qian zhai huan qian", photo: photo2) else {
+        guard let bet2 = Bet(username1: "FYQ", username2: "PRC", slaps: 12, winner: "PRC", incident: "qian zhai huan qian", photo: photo2) else {
             fatalError("Unable to instantiate bet")
         }
         
@@ -200,6 +200,7 @@ class MainTableViewController: UITableViewController {
             let timestamp = dict1?["timestamp"] as? Double ?? 0
             let username1 = dict1?["username1"] as? String ?? "nil"
             let username2 = dict1?["username2"] as? String ?? "nil"
+            let winner = dict1?["winner"] as? String ?? "nil"
             
             let Postby = snapshot.childSnapshot(forPath: "postby")
             let dict2 = Postby.value as? NSDictionary
@@ -221,8 +222,14 @@ class MainTableViewController: UITableViewController {
                 
                 alert.addAction(UIAlertAction(title: "YEAH", style: .default, handler: {
                     action in
-                    self.addtoUsers(incident: incident, timestamp: timestamp, username1: username1, username2: username2, currentUid: currentUid, photoURL: photoURL, username: username)
+                    if winner == "nil"{
+                    self.addtoUsers222(incident: incident, timestamp: timestamp, username1: username1, username2: username2, currentUid: currentUid, photoURL: photoURL, username: username,winner: winner)
                     cacheRef.removeValue()
+                    }
+                    else{
+                        self.addtoUsers(incident: incident, timestamp: timestamp, username1: username1, username2: username2, currentUid: currentUid, photoURL: photoURL, username: username,winner: winner)
+                        cacheRef.removeValue()
+                    }
                 }))
                 self.present(alert, animated: true)
                 
@@ -266,6 +273,7 @@ class MainTableViewController: UITableViewController {
                    
                     let username1 = BET["username1"] as? String,
                     let username2 = BET["username2"] as? String,
+                    let winner = BET["winner"] as? String,
                     let uid = postby["currentUid"] as? String,
                     let photoURL = postby["photoURL"] as? String,
                     let url = URL(string:photoURL),
@@ -278,7 +286,7 @@ class MainTableViewController: UITableViewController {
                         image in photo1 = image
                     }
 
-                   let post = Bet(username1: username1, username2: username2, slaps: 10, winner: true, incident: incident, photo: photo1)
+                   let post = Bet(username1: username1, username2: username2, slaps: 10, winner: winner , incident: incident, photo: photo1)
                     
                     tempBets.append(post!)
                 }
@@ -310,6 +318,7 @@ class MainTableViewController: UITableViewController {
                     
                     let username1 = BET["username1"] as? String,
                     let username2 = BET["username2"] as? String,
+                    let winner = BET["winner"] as? String,
                     let uid = postby["currentUid"] as? String,
                     let photoURL = postby["photoURL"] as? String,
                     let url = URL(string:photoURL),
@@ -322,7 +331,7 @@ class MainTableViewController: UITableViewController {
                         image in photo1 = image
                     }
                     
-                    let post = Bet(username1: username1, username2: username2, slaps: 10, winner: true, incident: incident, photo: photo1)
+                    let post = Bet(username1: username1, username2: username2, slaps: 10, winner: winner, incident: incident, photo: photo1)
                     
                     tempBets.append(post!)
                 }
@@ -336,8 +345,9 @@ class MainTableViewController: UITableViewController {
     
     
     
-    private func addtoUsers(incident: String, timestamp: Double, username1: String, username2: String, currentUid: String, photoURL: String, username: String){
+    private func addtoUsers222(incident: String, timestamp: Double, username1: String, username2: String, currentUid: String, photoURL: String, username: String, winner: String){
         guard let uid = Auth.auth().currentUser?.uid else { return }
+        
         let postRef = Database.database().reference().child("users/\(uid)/testingpost222").childByAutoId()
         let  postRef2 = Database.database().reference().child("users/\(currentUid)/testingpost222").childByAutoId()
         
@@ -351,6 +361,49 @@ class MainTableViewController: UITableViewController {
                 "username1": username1,
                 "username2": username2,
                 "incident": incident,
+                "winner": winner,
+                "timestamp": timestamp
+            ]
+            ] as [String:Any]
+        
+        postRef.setValue(postObject, withCompletionBlock: { error, ref in
+            if error == nil {
+                self.dismiss(animated: true, completion: nil)
+            } else {
+                // Handle the error
+            }
+        })
+        
+        postRef2.setValue(postObject, withCompletionBlock: { error, ref in
+            if error == nil {
+                self.dismiss(animated: true, completion: nil)
+            } else {
+                // Handle the error
+            }
+        })
+        
+        print("sucessful adding")
+    }
+    
+    
+    
+    private func addtoUsers(incident: String, timestamp: Double, username1: String, username2: String, currentUid: String, photoURL: String, username: String, winner: String){
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        let postRef = Database.database().reference().child("users/\(uid)/testingpost").childByAutoId()
+        let  postRef2 = Database.database().reference().child("users/\(currentUid)/testingpost").childByAutoId()
+        
+        let postObject = [
+            "postby": [
+                "currentUid" : currentUid,
+                "photoURL" : photoURL,
+                "username" : username],
+            
+            "BET":[
+                "username1": username1,
+                "username2": username2,
+                "incident": incident,
+                "winner": winner,
                 "timestamp": timestamp
             ]
             ] as [String:Any]
