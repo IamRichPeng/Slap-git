@@ -371,12 +371,18 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Winner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DdF-Nd-WIj">
-                                <rect key="frame" x="53" y="580" width="93" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Winner:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DdF-Nd-WIj">
+                                <rect key="frame" x="53" y="580" width="101" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u8l-nl-Yt5">
+                                <rect key="frame" x="181" y="586" width="126" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -385,11 +391,13 @@
                             <constraint firstItem="CTH-DA-62A" firstAttribute="trailing" secondItem="sbv-56-aE6" secondAttribute="trailing" constant="30" id="4mN-aw-R0P"/>
                             <constraint firstItem="CTH-DA-62A" firstAttribute="bottom" secondItem="9Yx-Wx-Kok" secondAttribute="bottom" constant="130" id="71Y-uC-GJm"/>
                             <constraint firstItem="CTH-DA-62A" firstAttribute="trailing" secondItem="9Yx-Wx-Kok" secondAttribute="trailing" constant="30" id="Ar0-54-3OS"/>
+                            <constraint firstItem="u8l-nl-Yt5" firstAttribute="leading" secondItem="DdF-Nd-WIj" secondAttribute="trailing" constant="27" id="Ckn-OT-Ecb"/>
                             <constraint firstItem="9Yx-Wx-Kok" firstAttribute="leading" secondItem="E3D-Xj-Uwx" secondAttribute="trailing" constant="57" id="ClL-DS-Yno"/>
                             <constraint firstItem="cfr-7D-AgE" firstAttribute="top" secondItem="H9r-E4-dTu" secondAttribute="top" id="Ic1-Bn-CMP"/>
                             <constraint firstItem="JQH-8F-oH6" firstAttribute="top" secondItem="CTH-DA-62A" secondAttribute="top" constant="123" id="JPw-aS-Kyz"/>
                             <constraint firstItem="DdF-Nd-WIj" firstAttribute="top" secondItem="E3D-Xj-Uwx" secondAttribute="bottom" constant="43" id="JgL-iD-bzM"/>
                             <constraint firstItem="sbv-56-aE6" firstAttribute="top" secondItem="cfr-7D-AgE" secondAttribute="bottom" constant="24" id="Kmh-Ae-Nqm"/>
+                            <constraint firstItem="CTH-DA-62A" firstAttribute="trailing" secondItem="u8l-nl-Yt5" secondAttribute="trailing" constant="68" id="MSb-pI-zpB"/>
                             <constraint firstItem="E3D-Xj-Uwx" firstAttribute="leading" secondItem="CTH-DA-62A" secondAttribute="leading" constant="30" id="Skg-LM-tMp"/>
                             <constraint firstItem="DdF-Nd-WIj" firstAttribute="leading" secondItem="CTH-DA-62A" secondAttribute="leading" constant="53" id="TAz-sb-i72"/>
                             <constraint firstItem="CTH-DA-62A" firstAttribute="bottom" secondItem="E3D-Xj-Uwx" secondAttribute="bottom" constant="130" id="WY0-k6-4nK"/>
@@ -397,6 +405,7 @@
                             <constraint firstItem="sbv-56-aE6" firstAttribute="top" secondItem="cfr-7D-AgE" secondAttribute="bottom" constant="24" id="d1T-ke-hY0"/>
                             <constraint firstItem="Y4j-Wx-kfV" firstAttribute="leading" secondItem="JQH-8F-oH6" secondAttribute="trailing" constant="50" id="fW8-Tp-mtp"/>
                             <constraint firstItem="E3D-Xj-Uwx" firstAttribute="top" secondItem="sbv-56-aE6" secondAttribute="bottom" constant="80" id="hWt-wG-enR"/>
+                            <constraint firstItem="u8l-nl-Yt5" firstAttribute="top" secondItem="9Yx-Wx-Kok" secondAttribute="bottom" constant="49" id="jBu-CW-6ro"/>
                             <constraint firstItem="H9r-E4-dTu" firstAttribute="top" secondItem="JQH-8F-oH6" secondAttribute="bottom" constant="22" id="juE-SX-UVc"/>
                             <constraint firstItem="sbv-56-aE6" firstAttribute="leading" secondItem="CTH-DA-62A" secondAttribute="leading" constant="30" id="wdH-fl-sua"/>
                             <constraint firstItem="Y4j-Wx-kfV" firstAttribute="trailing" secondItem="CTH-DA-62A" secondAttribute="trailing" id="yqL-1Z-ijB"/>
@@ -409,12 +418,13 @@
                         <outlet property="placeHolderLabel" destination="1ut-Tm-1ri" id="sVU-2W-GQM"/>
                         <outlet property="username1" destination="Y4j-Wx-kfV" id="vPS-8d-qIF"/>
                         <outlet property="username2" destination="cfr-7D-AgE" id="9VW-Bp-GJI"/>
-                        <outlet property="winnerlabel" destination="DdF-Nd-WIj" id="BSd-3B-UYe"/>
+                        <outlet property="winner" destination="u8l-nl-Yt5" id="N3w-TI-eFs"/>
+                        <outlet property="winnerlabel" destination="DdF-Nd-WIj" id="C1A-eC-X7v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wkg-hl-V7c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1833" y="895"/>
+            <point key="canvasLocation" x="1832.8" y="894.60269865067471"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="D0g-FR-ZmX">
