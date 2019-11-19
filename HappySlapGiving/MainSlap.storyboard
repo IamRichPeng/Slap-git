@@ -442,6 +442,7 @@
                         <outlet property="confirmbutton" destination="E3D-Xj-Uwx" id="eZO-az-GNf"/>
                         <outlet property="incident" destination="sbv-56-aE6" id="2jL-zh-lTD"/>
                         <outlet property="placeHolderLabel" destination="1ut-Tm-1ri" id="sVU-2W-GQM"/>
+                        <outlet property="slaps" destination="Ceb-gH-YWN" id="Y94-DA-Zzx"/>
                         <outlet property="username1" destination="Y4j-Wx-kfV" id="vPS-8d-qIF"/>
                         <outlet property="username2" destination="cfr-7D-AgE" id="9VW-Bp-GJI"/>
                         <outlet property="winner" destination="u8l-nl-Yt5" id="N3w-TI-eFs"/>

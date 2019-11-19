@@ -17,6 +17,7 @@ class CreateBetController: UIViewController, UITextFieldDelegate, UITextViewDele
     @IBOutlet weak var incident: UITextView!
     
     @IBOutlet weak var winner: UITextField!
+    @IBOutlet weak var slaps: UITextField!
     
     @IBOutlet weak var placeHolderLabel: UILabel!
     @IBOutlet weak var winnerlabel: UILabel!
@@ -60,6 +61,7 @@ class CreateBetController: UIViewController, UITextFieldDelegate, UITextViewDele
         //listener, monitor the change of textfield
         username1.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         username2.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
+        slaps.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
        winner.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
     }
     
@@ -69,8 +71,9 @@ class CreateBetController: UIViewController, UITextFieldDelegate, UITextViewDele
     @objc func textFieldChanged(_ textField:UITextField) {
         let user1 = username1.text
         let user2 = username2.text
+        let slap1 = Int(slaps.text!) ?? 0
      //   let winner1 = winner.text
-        let formFilled = user1 != nil && user1 != "" && user2 != nil && user2 != ""
+        let formFilled = user1 != nil && user1 != "" && user2 != nil && user2 != "" && slap1 != 0
         setConfirmButton(enabled: formFilled)
     }
     
@@ -172,6 +175,7 @@ class CreateBetController: UIViewController, UITextFieldDelegate, UITextViewDele
         guard let userProfile = UserService.currentUserProfile else {return }
         
         let postCache = Database.database().reference().child("cache/\(uid2!)")
+        let slaps = Int(self.slaps.text!)
         
         let postObject = [
             
@@ -184,6 +188,7 @@ class CreateBetController: UIViewController, UITextFieldDelegate, UITextViewDele
             "BET":[
                 "username1": username1.text!,
                 "username2": username2.text!,
+                "slaps": slaps!,
                 "incident": incident.text,
                 "winner": winner.text!,
                 
