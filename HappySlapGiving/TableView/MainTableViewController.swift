@@ -172,11 +172,11 @@ class MainTableViewController: UITableViewController {
         let photo1 = UIImage(named: "sample1")
         let photo2 = UIImage(named: "defaultphoto")
         
-        guard let bet1 = Bet(username1: "FYQ", username2: "PRC", slaps: 20, winner: "PRC", incident: "wo shi ni ba ba", photo: photo1) else {
+        guard let bet1 = Bet(username1: "FYQ", username2: "PRC", slaps: 20, winner: "PRC", incident: "Trump is the best president ever?", photo: photo1, timestamp: 1315134) else {
             fatalError("Unable to instantiate bet")
         }
         
-        guard let bet2 = Bet(username1: "FYQ", username2: "PRC", slaps: 12, winner: "PRC", incident: "qian zhai huan qian", photo: photo2) else {
+        guard let bet2 = Bet(username1: "FYQ", username2: "PRC", slaps: 12, winner: "PRC", incident: "qian zhai huan qian", photo: photo2, timestamp: 970520) else {
             fatalError("Unable to instantiate bet")
         }
         
@@ -282,7 +282,7 @@ class MainTableViewController: UITableViewController {
                     let photoURL = postby["photoURL"] as? String,
                     let url = URL(string:photoURL),
                     let incident = BET["incident"] as? String,
-                    let timestamp = BET["timestamp"] as? Double {
+                    let timestamp = BET["timestamp"] as? Int {
                     
                   let userProfile = UserProfile(uid: uid, username: username1, photoURL: url)
                     
@@ -290,7 +290,7 @@ class MainTableViewController: UITableViewController {
                         image in photo1 = image
                     }
 
-                   let post = Bet(username1: username1, username2: username2, slaps: slaps, winner: winner , incident: incident, photo: photo1)
+                    let post = Bet(username1: username1, username2: username2, slaps: slaps, winner: winner , incident: incident, photo: photo1,timestamp: timestamp)
                     
                     tempBets.append(post!)
                 }
@@ -329,7 +329,7 @@ class MainTableViewController: UITableViewController {
                     let photoURL = postby["photoURL"] as? String,
                     let url = URL(string:photoURL),
                     let incident = BET["incident"] as? String,
-                    let timestamp = BET["timestamp"] as? Double {
+                    let timestamp = BET["timestamp"] as? Int {
                     
                     let userProfile = UserProfile(uid: uid, username: username1, photoURL: url)
                     
@@ -337,7 +337,7 @@ class MainTableViewController: UITableViewController {
                         image in photo1 = image
                     }
                     
-                    let post = Bet(username1: username1, username2: username2, slaps: slaps, winner: winner, incident: incident, photo: photo1)
+                    let post = Bet(username1: username1, username2: username2, slaps: slaps, winner: winner, incident: incident, photo: photo1,timestamp: timestamp)
                     
                     tempBets.append(post!)
                 }

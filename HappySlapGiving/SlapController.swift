@@ -96,6 +96,7 @@ class SlapController: UIViewController, CBPeripheralDelegate, CBCentralManagerDe
         print("Data Send!")
   //      send_BLE_Data(withCharacteristic: redChar!, withValue: Data([1]))
         print(bet?.slaps)
+        print(bet?.timestamp)
     }
     
      var bet: Bet?
