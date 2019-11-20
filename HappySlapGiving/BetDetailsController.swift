@@ -21,6 +21,12 @@ class BetDetailsController: UIViewController{
     @IBOutlet weak var photo: UIImageView!
     
     @IBAction func SlapLoser(_ sender: Any) {
+
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as? SlapController
+        destination?.bet = self.bet
     }
     // This value ispassed by `MainTableViewController` in `prepare(for:sender:)`
     var bet: Bet?

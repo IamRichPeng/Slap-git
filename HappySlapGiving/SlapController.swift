@@ -94,8 +94,17 @@ class SlapController: UIViewController, CBPeripheralDelegate, CBCentralManagerDe
     
     @IBAction func SlapLoser(_ sender: Any) {
         print("Data Send!")
-        send_BLE_Data(withCharacteristic: redChar!, withValue: Data([1]))
+  //      send_BLE_Data(withCharacteristic: redChar!, withValue: Data([1]))
+        print(bet?.slaps)
     }
+    
+     var bet: Bet?
+    
+    
+    
+    
+    
+    
     
     override func viewDidLoad() {
         centralManager = CBCentralManager(delegate: self, queue: nil)

@@ -13,7 +13,6 @@ import Firebase
 class HomeSlapController: UIViewController{
     
     
-    @IBOutlet weak var label1: UILabel!
     
     @IBOutlet weak var profileImageView: UIImageView!
     
@@ -75,7 +74,6 @@ class HomeSlapController: UIViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        label1.text = "Fuck"
         
         let imageTap = UITapGestureRecognizer(target: self, action: #selector(openImagePicker))
         profileImageView.isUserInteractionEnabled = true
