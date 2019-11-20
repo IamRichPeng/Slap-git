@@ -23,6 +23,7 @@ class BetDetailsController: UIViewController{
     @IBAction func SlapLoser(_ sender: Any) {
 
     }
+    @IBOutlet weak var slaploser: UIButton!
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination = segue.destination as? SlapController
@@ -30,9 +31,19 @@ class BetDetailsController: UIViewController{
     }
     // This value ispassed by `MainTableViewController` in `prepare(for:sender:)`
     var bet: Bet?
+    var finishcheck: Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if finishcheck!{
+            winner.isHidden = false
+            slaploser.isHidden = false
+        }
+        else{
+            winner.isHidden = true
+            slaploser.isHidden = true
+        }
         
         if let bet = bet{
             username1.text = bet.username1

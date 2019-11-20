@@ -148,10 +148,12 @@ class MainTableViewController: UITableViewController {
      if let destination = segue.destination as? BetDetailsController,
      let indexPath = tableView.indexPathForSelectedRow{
         if indexPath.section == 0{
-     destination.bet = finishedBets[indexPath.row]
-     }
+            destination.bet = finishedBets[indexPath.row]
+            destination.finishcheck = true
+        }
         else{
             destination.bet = unfinishedBets[indexPath.row]
+            destination.finishcheck = false
         }
      }
     }
