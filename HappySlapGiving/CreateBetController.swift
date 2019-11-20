@@ -176,6 +176,7 @@ class CreateBetController: UIViewController, UITextFieldDelegate, UITextViewDele
         
         let postCache = Database.database().reference().child("cache/\(uid2!)")
         let slaps = Int(self.slaps.text!)
+        let timeStamp = Int(NSDate.timeIntervalSinceReferenceDate*1000)
         
         let postObject = [
             
@@ -192,7 +193,7 @@ class CreateBetController: UIViewController, UITextFieldDelegate, UITextViewDele
                 "incident": incident.text,
                 "winner": winner.text!,
                 
-                "timestamp": [".sv":"timestamp"]
+                "timestamp": timeStamp
             ]
             
             ] as [String:Any]

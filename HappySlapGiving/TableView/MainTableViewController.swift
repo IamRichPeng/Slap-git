@@ -199,7 +199,7 @@ class MainTableViewController: UITableViewController {
             let BET = snapshot.childSnapshot(forPath: "BET")
              let dict1 = BET.value as? NSDictionary
             let incident = dict1?["incident"] as? String ?? "nil"
-            let timestamp = dict1?["timestamp"] as? Double ?? 0
+            let timestamp = dict1?["timestamp"] as? Int ?? 0
             let username1 = dict1?["username1"] as? String ?? "nil"
             let username2 = dict1?["username2"] as? String ?? "nil"
             let slaps = dict1?["slaps"] as? Int ?? 0
@@ -351,11 +351,11 @@ class MainTableViewController: UITableViewController {
     
     
     
-    private func addtoUsers222(incident: String, timestamp: Double, username1: String, username2: String, currentUid: String, photoURL: String, username: String, winner: String,slaps: Int){
+    private func addtoUsers222(incident: String, timestamp: Int, username1: String, username2: String, currentUid: String, photoURL: String, username: String, winner: String,slaps: Int){
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
-        let postRef = Database.database().reference().child("users/\(uid)/testingpost222").childByAutoId()
-        let  postRef2 = Database.database().reference().child("users/\(currentUid)/testingpost222").childByAutoId()
+        let postRef = Database.database().reference().child("users/\(uid)/testingpost222").child(String(timestamp))
+        let  postRef2 = Database.database().reference().child("users/\(currentUid)/testingpost222").child(String(timestamp))
         
         let postObject = [
             "postby": [
@@ -394,11 +394,11 @@ class MainTableViewController: UITableViewController {
     
     
     
-    private func addtoUsers(incident: String, timestamp: Double, username1: String, username2: String, currentUid: String, photoURL: String, username: String, winner: String, slaps: Int){
+    private func addtoUsers(incident: String, timestamp: Int, username1: String, username2: String, currentUid: String, photoURL: String, username: String, winner: String, slaps: Int){
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
-        let postRef = Database.database().reference().child("users/\(uid)/testingpost").childByAutoId()
-        let  postRef2 = Database.database().reference().child("users/\(currentUid)/testingpost").childByAutoId()
+        let postRef = Database.database().reference().child("users/\(uid)/testingpost").child(String(timestamp))
+        let  postRef2 = Database.database().reference().child("users/\(currentUid)/testingpost").child(String(timestamp))
         
         let postObject = [
             "postby": [
