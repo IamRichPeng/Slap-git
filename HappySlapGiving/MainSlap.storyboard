@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,6 +17,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="crop" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0AF-HL-9F3">
+                                <rect key="frame" x="-20" y="20" width="415" height="647"/>
+                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user-logo" translatesAutoresizingMaskIntoConstraints="NO" id="zD3-0m-3iH">
                                 <rect key="frame" x="155" y="126" width="64" height="64"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -25,9 +28,13 @@
                                     <constraint firstAttribute="width" secondItem="zD3-0m-3iH" secondAttribute="height" multiplier="1:1" id="X5r-PP-06J"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4fN-TO-JTH">
-                                <rect key="frame" x="138" y="260" width="98" height="30"/>
-                                <state key="normal" title="Tab to change"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4fN-TO-JTH">
+                                <rect key="frame" x="94" y="310" width="187" height="31"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="17"/>
+                                <state key="normal" title="Tab to change">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                             </button>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DRn-Q2-Vvu">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -42,21 +49,31 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LER-oL-rs8">
-                                <rect key="frame" x="151.5" y="379" width="72" height="42"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LER-oL-rs8">
+                                <rect key="frame" x="94" y="394" width="187" height="31"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="17"/>
                                 <state key="normal" title="Upload">
-                                    <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" red="0.1398455798625946" green="0.089235968887805939" blue="0.50265961885452271" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="uploadprofile:" destination="9Tv-3D-8Um" eventType="touchUpInside" id="oyb-KY-VF6"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XmI-qS-dkN">
-                                <rect key="frame" x="171" y="476" width="35" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                <state key="normal" title="Go"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="db4-GU-pC6">
+                                <rect key="frame" x="163" y="215" width="49" height="45"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="21"/>
+                                <color key="textColor" red="0.99705451726913452" green="0.76643721648751229" blue="0.089333292477436543" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XmI-qS-dkN">
+                                <rect key="frame" x="157" y="516" width="60" height="60"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="17"/>
+                                <state key="normal" title="Go">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="gotoTableView:" destination="9Tv-3D-8Um" eventType="touchUpInside" id="pxK-v0-EuM"/>
                                     <segue destination="M9h-3S-4lK" kind="show" identifier="go" id="wgd-oN-IvL"/>
@@ -65,22 +82,37 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="LPE-mI-ccw" firstAttribute="bottom" secondItem="LER-oL-rs8" secondAttribute="bottom" constant="246" id="6HD-sd-oNG"/>
-                            <constraint firstItem="LER-oL-rs8" firstAttribute="leading" secondItem="LPE-mI-ccw" secondAttribute="leading" constant="151.5" id="AtR-Vo-HfL"/>
-                            <constraint firstItem="LPE-mI-ccw" firstAttribute="trailing" secondItem="LER-oL-rs8" secondAttribute="trailing" constant="151.5" id="Myb-JN-yA8"/>
+                            <constraint firstItem="LPE-mI-ccw" firstAttribute="trailing" secondItem="LER-oL-rs8" secondAttribute="trailing" constant="94" id="5Ir-Eg-plT"/>
+                            <constraint firstItem="0AF-HL-9F3" firstAttribute="trailing" secondItem="LPE-mI-ccw" secondAttribute="trailing" constant="20" id="77q-Sd-ib5"/>
+                            <constraint firstItem="0AF-HL-9F3" firstAttribute="top" secondItem="LPE-mI-ccw" secondAttribute="top" id="7FE-Q3-GWl"/>
+                            <constraint firstItem="LER-oL-rs8" firstAttribute="leading" secondItem="LPE-mI-ccw" secondAttribute="leading" constant="94" id="Amc-OL-jj1"/>
+                            <constraint firstItem="4fN-TO-JTH" firstAttribute="leading" secondItem="LPE-mI-ccw" secondAttribute="leading" constant="94" id="D8B-fG-LDn"/>
+                            <constraint firstItem="LER-oL-rs8" firstAttribute="top" secondItem="4fN-TO-JTH" secondAttribute="bottom" constant="53" id="DnZ-TO-4TM"/>
+                            <constraint firstItem="XmI-qS-dkN" firstAttribute="top" secondItem="LER-oL-rs8" secondAttribute="bottom" constant="91" id="HBx-0V-hjA"/>
+                            <constraint firstItem="LPE-mI-ccw" firstAttribute="trailing" secondItem="4fN-TO-JTH" secondAttribute="trailing" constant="94" id="JHH-9B-WeL"/>
                             <constraint firstItem="zD3-0m-3iH" firstAttribute="width" secondItem="zD3-0m-3iH" secondAttribute="height" multiplier="1:1" id="PZH-Jo-NyM"/>
-                            <constraint firstItem="4fN-TO-JTH" firstAttribute="top" secondItem="zD3-0m-3iH" secondAttribute="bottom" constant="70" id="TMX-oN-bTX"/>
+                            <constraint firstItem="LPE-mI-ccw" firstAttribute="bottom" secondItem="XmI-qS-dkN" secondAttribute="bottom" constant="91" id="QV7-b2-ld4"/>
+                            <constraint firstItem="XmI-qS-dkN" firstAttribute="leading" secondItem="LPE-mI-ccw" secondAttribute="leading" constant="157" id="R4S-pN-D3h"/>
+                            <constraint firstItem="4fN-TO-JTH" firstAttribute="top" secondItem="zD3-0m-3iH" secondAttribute="bottom" constant="120" id="TMX-oN-bTX"/>
+                            <constraint firstItem="LPE-mI-ccw" firstAttribute="trailing" secondItem="XmI-qS-dkN" secondAttribute="trailing" constant="158" id="Weo-cW-wb8"/>
                             <constraint firstItem="zD3-0m-3iH" firstAttribute="top" secondItem="LPE-mI-ccw" secondAttribute="top" constant="106" id="WuQ-Nr-v9O"/>
-                            <constraint firstItem="4fN-TO-JTH" firstAttribute="leading" secondItem="LPE-mI-ccw" secondAttribute="leading" constant="138" id="bAj-eZ-ewG"/>
                             <constraint firstItem="LPE-mI-ccw" firstAttribute="trailing" secondItem="zD3-0m-3iH" secondAttribute="trailing" constant="156" id="fHW-Kn-fPi"/>
-                            <constraint firstItem="LPE-mI-ccw" firstAttribute="trailing" secondItem="4fN-TO-JTH" secondAttribute="trailing" constant="139" id="jEQ-Gb-ytm"/>
+                            <constraint firstItem="db4-GU-pC6" firstAttribute="top" secondItem="zD3-0m-3iH" secondAttribute="bottom" constant="25" id="jdr-A3-mwI"/>
+                            <constraint firstItem="0AF-HL-9F3" firstAttribute="bottom" secondItem="LPE-mI-ccw" secondAttribute="bottom" id="m9c-UV-RIn"/>
+                            <constraint firstItem="0AF-HL-9F3" firstAttribute="leading" secondItem="LPE-mI-ccw" secondAttribute="leading" constant="-20" id="n0Q-hz-e3k"/>
                             <constraint firstItem="zD3-0m-3iH" firstAttribute="leading" secondItem="LPE-mI-ccw" secondAttribute="leading" constant="155" id="oMb-sA-Uhx"/>
+                            <constraint firstItem="4fN-TO-JTH" firstAttribute="centerX" secondItem="db4-GU-pC6" secondAttribute="centerX" id="qgd-14-c26"/>
+                            <constraint firstItem="4fN-TO-JTH" firstAttribute="top" secondItem="db4-GU-pC6" secondAttribute="bottom" constant="50" id="zvC-3J-MfX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LPE-mI-ccw"/>
                     </view>
                     <connections>
+                        <outlet property="back" destination="0AF-HL-9F3" id="R85-Ay-Bk5"/>
+                        <outlet property="gobtn" destination="XmI-qS-dkN" id="wcI-id-fLa"/>
+                        <outlet property="nameSign" destination="db4-GU-pC6" id="8od-h4-c0P"/>
                         <outlet property="profileImageView" destination="zD3-0m-3iH" id="7Cj-uy-JF4"/>
                         <outlet property="tapToChangeProfileButton" destination="4fN-TO-JTH" id="GRM-Lo-o7E"/>
+                        <outlet property="uoloadbtn" destination="LER-oL-rs8" id="sXE-Ya-3xo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oct-Wr-DMo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -531,6 +563,7 @@
     </scenes>
     <resources>
         <image name="baseline_arrow_back_white_24dp" width="24" height="24"/>
+        <image name="crop" width="720" height="1280"/>
         <image name="imageView:xUk-TO-lPa:image" width="455" height="416">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGVVZYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8QEgcI
