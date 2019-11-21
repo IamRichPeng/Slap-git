@@ -95,13 +95,23 @@ class SlapController: UIViewController, CBPeripheralDelegate, CBCentralManagerDe
     @IBAction func SlapLoser(_ sender: Any) {
         print("Data Send!")
   //      send_BLE_Data(withCharacteristic: redChar!, withValue: Data([1]))
-        print(bet?.slaps)
-        print(bet?.timestamp)
+        print(bet!.slaps)
+        print(bet!.timestamp)
+        updateSlaps()
     }
     
      var bet: Bet?
     
-    
+    private func updateSlaps(){
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        let postRef = Database.database().reference().child("users/\(uid)/testingpost").child(String(bet!.timestamp)).child("BET/slaps")
+        
+        bet!.slaps = bet!.slaps - 1
+        let slaps = bet!.slaps
+        postRef.setValue(slaps)
+
+    }
     
     
     
