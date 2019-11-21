@@ -13,12 +13,15 @@ import Firebase
 class HomeSlapController: UIViewController{
     
     
-    @IBOutlet weak var label1: UILabel!
+    @IBOutlet weak var nameSign: UILabel!
     
     @IBOutlet weak var profileImageView: UIImageView!
     
+    @IBOutlet weak var back: UIImageView!
     @IBOutlet weak var tapToChangeProfileButton: UIButton!
 
+    @IBOutlet weak var uoloadbtn: UIButton!
+    @IBOutlet weak var gobtn: UIButton!
     @IBAction func willbemodified(_ sender: UIBarButtonItem) {
         let navController = UINavigationController(rootViewController: HomeController())
         self.present(navController, animated: true, completion: nil)
@@ -75,7 +78,6 @@ class HomeSlapController: UIViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        label1.text = "Fuck"
         
         let imageTap = UITapGestureRecognizer(target: self, action: #selector(openImagePicker))
         profileImageView.isUserInteractionEnabled = true
@@ -84,18 +86,25 @@ class HomeSlapController: UIViewController{
         profileImageView.clipsToBounds = true
         tapToChangeProfileButton.addTarget(self, action: #selector(openImagePicker), for: .touchUpInside)
         
+        nameSign.text = "User Name: \( String(describing: UserService.currentUserProfile!.username))"
+   //     print(UserService.currentUserProfile!.username)
         imagePicker = UIImagePickerController()
         imagePicker.allowsEditing = true
         imagePicker.sourceType = .photoLibrary
         imagePicker.delegate = self
+        self.circlebtn(gobtn)
+      //  self.circlebtn(uoloadbtn)
     }
     
     @objc func openImagePicker(_ sender:Any) {
         // Open Image Picker
         self.present(imagePicker, animated: true, completion: nil)
     }
-    
-    
+    func circlebtn(_ object: AnyObject){
+        object.layer?.cornerRadius = object.frame.size.width / 2
+        object.layer?.masksToBounds = true
+    }
+
     func uploadProfileImage(_ image:UIImage, completion: @escaping ((_ url:URL?)->())) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         let storageRef = Storage.storage().reference().child("user/\(uid)")

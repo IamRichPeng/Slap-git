@@ -14,13 +14,14 @@ class Bet {
     var username1: String
     var username2: String
     var slaps: Int //加一个slap变量，加深对整个流程的理解。
-    var winner: Bool // 0 for winner = username1(myself), or change to string? TBD
+    var winner: String
     var incident: String
      var photo: UIImage?
+    var timestamp: Int
     
     //MARK: Initialization
     
-    init?(username1: String, username2: String, slaps: Int, winner: Bool, incident: String, photo: UIImage?){
+    init?(username1: String, username2: String, slaps: Int, winner: String, incident: String, photo: UIImage?, timestamp: Int){
         
         // The name must not be empty
         guard !username1.isEmpty else {
@@ -36,5 +37,6 @@ class Bet {
         self.winner = winner
         self.incident = incident
         self.photo = photo
+        self.timestamp = timestamp
     }
 }
