@@ -8,8 +8,10 @@
 
 import UIKit
 import Firebase
+import CoreBluetooth
 
-class HomeController: UIViewController {
+
+class HomeController: UIViewController,CBPeripheralDelegate, CBCentralManagerDelegate  {
     
     // MARK: - Properties
     
@@ -37,6 +39,7 @@ class HomeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         authenticateUserAndConfigureView()
+        centralManager = CBCentralManager(delegate: self, queue: nil)
         
     }
     
@@ -114,4 +117,75 @@ class HomeController: UIViewController {
         welcomeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         welcomeLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
+    
+    
+    
+    
+    //****************bluetooth
+    private var centralManager: CBCentralManager!
+    private var peripheral: CBPeripheral!
+    
+    //use characteristic to send message to service(device)
+    private var redChar: CBCharacteristic?
+    
+    
+    
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        print("Central state update")
+        if central.state != .poweredOn {
+            print("Central is not powered on")
+        } else {
+            print("Central scanning for", ParticlePeripheral.particleLEDServiceUUID);
+            centralManager.scanForPeripherals(withServices: [ParticlePeripheral.particleLEDServiceUUID],
+                                              options: [CBCentralManagerScanOptionAllowDuplicatesKey : true])
+        }
+    }
+    
+    
+    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+        
+        // We've found it so stop scan
+        self.centralManager.stopScan()
+        
+        // Copy the peripheral instance
+        self.peripheral = peripheral
+        self.peripheral.delegate = self
+        
+        // Connect!
+        self.centralManager.connect(self.peripheral, options: nil)
+        
+    }
+    
+    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+        if peripheral == self.peripheral {
+            print("Connected to your Particle Board")
+            peripheral.discoverServices([ParticlePeripheral.particleLEDServiceUUID])
+        }
+    }
+    
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
+        if let services = peripheral.services {
+            for service in services {
+                if service.uuid == ParticlePeripheral.particleLEDServiceUUID {
+                    print("LED service found")
+                    //Now kick off discovery of characteristics
+                    peripheral.discoverCharacteristics([ParticlePeripheral.redLEDCharacteristicUUID], for: service)
+                    return
+                }
+            }
+        }
+    }
+    
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
+        if let characteristics = service.characteristics {
+            for characteristic in characteristics {
+                print("count")
+                if characteristic.uuid == ParticlePeripheral.redLEDCharacteristicUUID {
+                    print("Red LED characteristic found")
+                    redChar = characteristic
+                }
+            }
+        }
+    }
 }
+

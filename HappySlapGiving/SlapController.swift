@@ -18,12 +18,12 @@ class SlapController: UIViewController, CBPeripheralDelegate, CBCentralManagerDe
     
     private var centralManager: CBCentralManager!
     private var peripheral: CBPeripheral!
-    
+
     //use characteristic to send message to service(device)
     private var redChar: CBCharacteristic?
-    
-    
-    
+
+
+
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         print("Central state update")
         if central.state != .poweredOn {
@@ -34,29 +34,29 @@ class SlapController: UIViewController, CBPeripheralDelegate, CBCentralManagerDe
                                               options: [CBCentralManagerScanOptionAllowDuplicatesKey : true])
         }
     }
-    
-    
+
+
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        
+
         // We've found it so stop scan
         self.centralManager.stopScan()
-        
+
         // Copy the peripheral instance
         self.peripheral = peripheral
         self.peripheral.delegate = self
-        
+
         // Connect!
         self.centralManager.connect(self.peripheral, options: nil)
-        
+
     }
-    
+
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         if peripheral == self.peripheral {
             print("Connected to your Particle Board")
             peripheral.discoverServices([ParticlePeripheral.particleLEDServiceUUID])
         }
     }
-    
+
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         if let services = peripheral.services {
             for service in services {
@@ -69,7 +69,7 @@ class SlapController: UIViewController, CBPeripheralDelegate, CBCentralManagerDe
             }
         }
     }
-    
+
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         if let characteristics = service.characteristics {
             for characteristic in characteristics {
@@ -94,7 +94,7 @@ class SlapController: UIViewController, CBPeripheralDelegate, CBCentralManagerDe
     
     @IBAction func SlapLoser(_ sender: Any) {
         print("Data Send!")
-  //      send_BLE_Data(withCharacteristic: redChar!, withValue: Data([1]))
+  //    send_BLE_Data(withCharacteristic: redChar!, withValue: Data([1]))
         print(bet!.slaps)
         print(bet!.timestamp)
         updateSlaps()
@@ -118,7 +118,7 @@ class SlapController: UIViewController, CBPeripheralDelegate, CBCentralManagerDe
     
     
     override func viewDidLoad() {
-        centralManager = CBCentralManager(delegate: self, queue: nil)
+      //  centralManager = CBCentralManager(delegate: self, queue: nil)
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
