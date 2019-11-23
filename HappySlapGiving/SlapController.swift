@@ -13,6 +13,7 @@ import CoreBluetooth
 
 class SlapController: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate {
     
+    @IBOutlet weak var bigbtn: UIButton!
     
     
     
@@ -120,7 +121,26 @@ class SlapController: UIViewController, CBPeripheralDelegate, CBCentralManagerDe
     override func viewDidLoad() {
         centralManager = CBCentralManager(delegate: self, queue: nil)
         super.viewDidLoad()
+        circlebtn(bigbtn)
+        bigbtn.addTarget(self, action: #selector(self.changeship), for: .touchUpInside)
         // Do any additional setup after loading the view.
     }
+    func circlebtn(_ object: AnyObject){
+        object.layer?.cornerRadius = object.frame.size.width / 2
+        object.layer?.masksToBounds = true
+    }
     
+    @objc fileprivate func changeship(sender:UIButton){
+        self.donghua(sender)
+    }
+    
+    fileprivate func donghua(_ viewToAnimato:UIView){
+        UIView.animate(withDuration: 0.15, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
+            viewToAnimato.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
+        }){(_) in
+            UIView.animate(withDuration: 0.15, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 2, options: .curveEaseIn, animations: {
+                viewToAnimato.transform = CGAffineTransform(scaleX: 1, y: 1)
+    }, completion: nil)
+}
+}
 }
