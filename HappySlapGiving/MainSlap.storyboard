@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -374,7 +374,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y4j-Wx-kfV">
-                                <rect key="frame" x="145" y="141" width="230" height="40"/>
+                                <rect key="frame" x="145" y="185" width="230" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="230" id="D0d-1h-jyR"/>
                                     <constraint firstAttribute="height" constant="40" id="Vzn-UU-WXy"/>
@@ -384,7 +384,7 @@
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Motherkisser" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cfr-7D-AgE">
-                                <rect key="frame" x="145" y="205" width="230" height="40"/>
+                                <rect key="frame" x="145" y="249" width="230" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="0GT-Ac-DWU"/>
                                     <constraint firstAttribute="width" constant="230" id="pip-2G-y9X"/>
@@ -394,7 +394,7 @@
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JQH-8F-oH6">
-                                <rect key="frame" x="87" y="143" width="8" height="40"/>
+                                <rect key="frame" x="87" y="187" width="8" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="sYl-m1-0yC"/>
                                 </constraints>
@@ -403,7 +403,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sbv-56-aE6">
-                                <rect key="frame" x="30" y="269" width="315" height="128"/>
+                                <rect key="frame" x="30" y="313" width="315" height="84"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -416,7 +416,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dare you" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H9r-E4-dTu">
-                                <rect key="frame" x="26" y="205" width="111" height="36"/>
+                                <rect key="frame" x="26" y="249" width="111" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -547,13 +547,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RsE-D1-eKz">
-                                <rect key="frame" x="0.0" y="29" width="375" height="44"/>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RsE-D1-eKz">
+                                <rect key="frame" x="0.0" y="29" width="376" height="44"/>
+                                <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
-                                    <navigationItem title="Title" id="svE-Jx-m4g">
+                                    <navigationItem id="svE-Jx-m4g">
                                         <barButtonItem key="leftBarButtonItem" title="back" id="3uA-uk-QBx">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <connections>
-                                                <segue destination="KY6-cm-n5F" kind="showDetail" id="0g8-9Z-VVb"/>
+                                                <segue destination="9Tv-3D-8Um" kind="show" id="gLY-h2-cGP"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -593,13 +595,16 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="V72-EX-jcs" firstAttribute="bottom" secondItem="0j2-hJ-PT7" secondAttribute="bottom" constant="90" id="00D-i1-rWv"/>
                             <constraint firstItem="0j2-hJ-PT7" firstAttribute="leading" secondItem="sL2-v3-1Ob" secondAttribute="trailing" constant="7" id="1aw-dD-5U4"/>
+                            <constraint firstItem="RsE-D1-eKz" firstAttribute="centerX" secondItem="nkU-EV-yQA" secondAttribute="centerX" id="28o-Aj-0JL"/>
+                            <constraint firstItem="RsE-D1-eKz" firstAttribute="leading" secondItem="V72-EX-jcs" secondAttribute="leading" id="2or-DU-ZQ6"/>
                             <constraint firstItem="nkU-EV-yQA" firstAttribute="top" secondItem="RsE-D1-eKz" secondAttribute="bottom" constant="110" id="6ec-Ae-EnD"/>
                             <constraint firstItem="sL2-v3-1Ob" firstAttribute="leading" secondItem="diA-rn-YW1" secondAttribute="trailing" constant="7" id="6k0-Ha-IpB"/>
                             <constraint firstItem="V72-EX-jcs" firstAttribute="bottom" secondItem="sL2-v3-1Ob" secondAttribute="bottom" constant="86" id="STt-zH-ZTW"/>
+                            <constraint firstItem="RsE-D1-eKz" firstAttribute="top" secondItem="V72-EX-jcs" secondAttribute="top" constant="9" id="Tyx-e5-dzv"/>
                             <constraint firstItem="diA-rn-YW1" firstAttribute="leading" secondItem="V72-EX-jcs" secondAttribute="leading" constant="26" id="UVH-Wr-vHY"/>
                             <constraint firstItem="nkU-EV-yQA" firstAttribute="leading" secondItem="V72-EX-jcs" secondAttribute="leading" constant="94" id="WqH-8F-L1H"/>
                             <constraint firstItem="V72-EX-jcs" firstAttribute="bottom" secondItem="diA-rn-YW1" secondAttribute="bottom" constant="91" id="Xkg-rZ-gle"/>
@@ -13378,6 +13383,6 @@ AQAAAAAAAABZAAAAAAAAAAAAAAAAAAuqKQ
         <image name="user-logo" width="110" height="110"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0g8-9Z-VVb"/>
+        <segue reference="gLY-h2-cGP"/>
     </inferredMetricsTieBreakers>
 </document>
