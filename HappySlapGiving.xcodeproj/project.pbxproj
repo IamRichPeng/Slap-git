@@ -29,6 +29,7 @@
 		238D7ADE21DC1D0B0042CE88 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238D7ADD21DC1D0B0042CE88 /* HomeController.swift */; };
 		23F04036234D196400805BAD /* ParticalPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F04035234D196400805BAD /* ParticalPeripheral.swift */; };
 		23F04038234D197400805BAD /* SlapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F04037234D197400805BAD /* SlapController.swift */; };
+		73F3763C23946BB200886A08 /* Slap.wav in Resources */ = {isa = PBXBuildFile; fileRef = 73F3763B23946BB200886A08 /* Slap.wav */; };
 		787FA543B3A5E26D53208C3D /* Pods_FirebaseLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55686805C9A97DB9B6747597 /* Pods_FirebaseLogin.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,7 @@
 		23F04035234D196400805BAD /* ParticalPeripheral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticalPeripheral.swift; sourceTree = "<group>"; };
 		23F04037234D197400805BAD /* SlapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlapController.swift; sourceTree = "<group>"; };
 		55686805C9A97DB9B6747597 /* Pods_FirebaseLogin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FirebaseLogin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		73F3763B23946BB200886A08 /* Slap.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Slap.wav; sourceTree = "<group>"; };
 		DD801CB3CECEB01590F1FE97 /* Pods-FirebaseLogin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseLogin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FirebaseLogin/Pods-FirebaseLogin.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,6 +131,7 @@
 		238D7AB921DAC0160042CE88 /* HappySlapGiving */ = {
 			isa = PBXGroup;
 			children = (
+				73F3763B23946BB200886A08 /* Slap.wav */,
 				23678C7C21E8F68100B2C948 /* Sign in */,
 				238D7ABA21DAC0160042CE88 /* AppDelegate.swift */,
 				238D7AC121DAC0170042CE88 /* Assets.xcassets */,
@@ -228,6 +231,7 @@
 				2349A15A22A17729009E4ACC /* MainSlap.storyboard in Resources */,
 				2349A12C22A03D55009E4ACC /* GoogleService-Info.plist in Resources */,
 				238D7AC221DAC0170042CE88 /* Assets.xcassets in Resources */,
+				73F3763C23946BB200886A08 /* Slap.wav in Resources */,
 				238D7AC021DAC0160042CE88 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

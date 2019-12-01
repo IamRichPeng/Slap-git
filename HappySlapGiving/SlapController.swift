@@ -9,14 +9,14 @@
 import UIKit
 import Firebase
 import CoreBluetooth
-
+import AVFoundation
 
 class SlapController: UIViewController, CBPeripheralDelegate, CBCentralManagerDelegate {
     
     @IBOutlet weak var bigbtn: UIButton!
     
     
-    
+    var audioPlayer:AVAudioPlayer?
     private var centralManager: CBCentralManager!
     private var peripheral: CBPeripheral!
     
@@ -94,6 +94,15 @@ class SlapController: UIViewController, CBPeripheralDelegate, CBCentralManagerDe
     }
     
     @IBAction func SlapLoser(_ sender: Any) {
+        let pathToSound = Bundle.main.path(forResource: "Slap", ofType: "wav")
+        let url = URL(fileURLWithPath: pathToSound!)
+        
+        do{
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            audioPlayer?.play()
+        } catch {
+            
+        }
         print("Data Send!")
   //      send_BLE_Data(withCharacteristic: redChar!, withValue: Data([1]))
         print(bet!.slaps)
